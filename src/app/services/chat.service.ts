@@ -73,8 +73,14 @@ export class ChatService {
     });
   }
 
-  // Login Friendly Chat.
-  login() {}
+ // Signs-in Friendly Chat.
+login() {
+    signInWithPopup(this.auth, this.provider).then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        this.router.navigate(['/', 'chat']);
+        return credential;
+    })
+}
 
   // Logout of Friendly Chat.
   logout() {}
